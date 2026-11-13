@@ -1,0 +1,176 @@
+[gd_scene format=4 uid="uid://d07ospknsahyp"]
+
+[ext_resource type="PackedScene" uid="uid://cp50u5fataag5" path="res://levels/Models/Abandoned_House.glb" id="1_80vhd"]
+[ext_resource type="Script" uid="uid://b2jnhsap602er" path="res://levels/level.gd" id="2_level"]
+[ext_resource type="Texture2D" uid="uid://bo4qdrpc3fonj" path="res://levels/Models/Abandoned_House_Puerta.jpg" id="3_5mrsh"]
+[ext_resource type="PackedScene" uid="uid://b1kofp1ayer0" path="res://player/player.tscn" id="3_player"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1"]
+sky_top_color = Color(0.09, 0.12, 0.22, 1)
+sky_horizon_color = Color(0.32, 0.36, 0.46, 1)
+sky_curve = 0.2
+ground_bottom_color = Color(0.05, 0.055, 0.07, 1)
+ground_horizon_color = Color(0.19, 0.2, 0.24, 1)
+
+[sub_resource type="Sky" id="Sky_1"]
+sky_material = SubResource("ProceduralSkyMaterial_1")
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 2
+sky = SubResource("Sky_1")
+ambient_light_source = 3
+ambient_light_energy = 1.6
+tonemap_mode = 2
+ssao_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.08, 0.09, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_requm"]
+resource_name = "Puerta"
+cull_mode = 2
+albedo_texture = ExtResource("3_5mrsh")
+texture_filter = 2
+metadata/_gltf_primary_texture_coord = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_sj3pu"]
+_surfaces = [{
+"aabb": AABB(-0.8799031, -0.9787757, -0.022534259, 0.8743541, 2.1310139, 0.045068517),
+"format": 34896613377,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAQADAAIAAAAEAAEAAgADAAUAAgAFAAAAAAAGAAQAAAAFAAYABAAHAAEAAQAHAAMABAAGAAcABQADAAcABQAHAAYA"),
+"name": "Puerta",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP//AAD//wAAAAAAAAAAAAAAAAAAAAD//wAAAAD//wAA//8AAAAA/////wAA////////AAD/////AAAAAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_w6r4f"]
+resource_name = "Abandoned_House_Plane_066"
+_surfaces = [{
+"aabb": AABB(-0.8799031, -0.9787757, -0.022534259, 0.8743541, 2.1310139, 0.045068517),
+"attribute_data": PackedByteArray("///GwGd/Cr7//wq+Z3/GwP//xsBnfwq+Z3/GwP//Cr4Dw///YrzRfmK8//8Dw9F+Yrz//wPD0X4Dw///YrzRfmd//////9F+/////2d/0X7/////Z3/Rfmd//////9F+"),
+"format": 34896613399,
+"index_count": 36,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEAFAAVABYAFAAXABUA"),
+"material": SubResource("StandardMaterial3D_requm"),
+"name": "Puerta",
+"primitive": 3,
+"uv_scale": Vector4(2.0093336, 2.01859, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("AAAAAP///////wAAAAD//wAAAAAAAP////8AAP////8AAP////8AAP////8AAAAA////////AAAAAP//AAAAAP//AAD//wAA/////wAAAAD//wAAAAAAAP///////wAAAAAAAAAA/78AAP//////vwAAAAD///+/AAD//wAA/7///wAAAAD//wAA//8AAP//AAAAAAAA////////AAD//wAAAAD//wAA////////AAD//wAA//8AAAAA/////wAA/3//P/9//z//f/8//3//P/9//7//f/+//3//v/9//7//v/9//7//f/+//3//v/9//3////9/////f////3////9/////f////3////9/////f/9//3//f/9//3//f/9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_sj3pu")
+
+[node name="level" type="Node3D" unique_id=551564877]
+script = ExtResource("2_level")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=810808680]
+environment = SubResource("Environment_1")
+
+[node name="Moonlight" type="DirectionalLight3D" parent="." unique_id=4961163]
+transform = Transform3D(-0.76604444, 0, -0.64278764, -0.4924039, 0.64278764, 0.58682406, 0.41317594, 0.76604444, -0.4924039, 0, 25, 0)
+light_color = Color(0.72, 0.78, 0.97, 1)
+light_energy = 1.5
+shadow_enabled = true
+
+[node name="Abandoned_House" parent="." unique_id=446834699 instance=ExtResource("1_80vhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5697775, 0, 10.503038)
+
+[node name="Cables_002" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="1" unique_id=89617176]
+visible = false
+
+[node name="Conector" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="2" unique_id=1860698506]
+visible = false
+
+[node name="Conector_001" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="3" unique_id=1216028701]
+visible = false
+
+[node name="Cable" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="4" unique_id=1986487402]
+visible = false
+
+[node name="Cable_001" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="5" unique_id=694931712]
+visible = false
+
+[node name="Cables" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="6" unique_id=1977656875]
+visible = false
+
+[node name="Generador" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="7" unique_id=2062200390]
+visible = false
+
+[node name="Luz" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="8" unique_id=1184237259]
+visible = false
+
+[node name="Mesa_016" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="9" unique_id=899240038]
+visible = false
+
+[node name="Monitor" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="10" unique_id=1880318664]
+visible = false
+
+[node name="Monitor_001" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="11" unique_id=574067423]
+visible = false
+
+[node name="Monitor_002" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="12" unique_id=591735204]
+visible = false
+
+[node name="Monitor_003" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="13" unique_id=729902381]
+visible = false
+
+[node name="Monitor_004" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="14" unique_id=807104285]
+visible = false
+
+[node name="Monitor_005" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="15" unique_id=1501923639]
+visible = false
+
+[node name="Monitor_006" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="16" unique_id=1533823393]
+visible = false
+
+[node name="Pizarra" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="17" unique_id=434049763]
+visible = false
+
+[node name="R_003" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="18" unique_id=959347049]
+visible = false
+
+[node name="R_004" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="19" unique_id=1644561823]
+visible = false
+
+[node name="R_005" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="20" unique_id=167702404]
+visible = false
+
+[node name="Radio" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="21" unique_id=1231074599]
+visible = false
+
+[node name="T" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="22" unique_id=1286057724]
+visible = false
+
+[node name="Teclado" parent="Abandoned_House/Base" parent_id_path=PackedInt32Array(446834699, 1831805047) index="23" unique_id=1228123992]
+visible = false
+
+[node name="Otros" parent="Abandoned_House" index="21" unique_id=1155284882]
+visible = false
+
+[node name="Cortina" parent="Abandoned_House/Baño" parent_id_path=PackedInt32Array(446834699, 1430893870) index="14" unique_id=322305085]
+visible = false
+
+[node name="Puerta" type="MeshInstance3D" parent="Abandoned_House/Casa/Puerta" parent_id_path=PackedInt32Array(446834699, 546155620) index="0" unique_id=802423823]
+transform = Transform3D(0.06489459, 9.908055e-08, -1.1982441, -1.04907336e-07, -1.2, -1.0490733e-07, -1.198244, 1.10427074e-07, -0.06489458, 0.3548622, 0.16937172, -14.730469)
+mesh = SubResource("ArrayMesh_w6r4f")
+
+[node name="Ban" parent="Abandoned_House" index="29" unique_id=1245512377]
+visible = false
+
+[node name="Puerta_Fron" parent="Abandoned_House/Ban" index="4" unique_id=153931715]
+visible = false
+
+[node name="Puerta_Fron_001" parent="Abandoned_House/Ban" index="5" unique_id=560774204]
+visible = false
+
+[node name="Reseptor_Señal" parent="Abandoned_House" index="33" unique_id=1869064760]
+visible = false
+
+[node name="Player" parent="." unique_id=1434548701 instance=ExtResource("3_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.004353, -0.17428672, -108.6357)
+
+[editable path="Abandoned_House"]
