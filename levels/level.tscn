@@ -22,8 +22,29 @@ ambient_light_source = 3
 ambient_light_energy = 1.6
 tonemap_mode = 2
 ssao_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.08, 0.09, 0.12, 1)
+fog_light_energy = 3.47
+fog_density = 0.0412
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.1633
+volumetric_fog_albedo = Color(0.05038211, 0.01812914, 0.089394465, 1)
+volumetric_fog_length = 140.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_u2mhe"]
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 1, 100)
+gravity = Vector3(0, -40, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwkll"]
+transparency = 1
+shading_mode = 0
+disable_fog = true
+albedo_color = Color(1, 1, 1, 0.3137255)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j3s6b"]
+material = SubResource("StandardMaterial3D_fwkll")
+size = Vector3(0.005, 0.8, 0.005)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_requm"]
 resource_name = "Puerta"
@@ -70,11 +91,21 @@ script = ExtResource("2_level")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=810808680]
 environment = SubResource("Environment_1")
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="WorldEnvironment" unique_id=990241144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.857023, 15.395754, -73.18477)
+amount = 3000
+lifetime = 1.53
+visibility_aabb = AABB(300, 100, 300, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_u2mhe")
+draw_pass_1 = SubResource("BoxMesh_j3s6b")
+
 [node name="Moonlight" type="DirectionalLight3D" parent="." unique_id=4961163]
 transform = Transform3D(-0.76604444, 0, -0.64278764, -0.4924039, 0.64278764, 0.58682406, 0.41317594, 0.76604444, -0.4924039, 0, 25, 0)
 light_color = Color(0.72, 0.78, 0.97, 1)
-light_energy = 1.5
+light_volumetric_fog_energy = 16.0
+light_specular = 0.0
 shadow_enabled = true
+sky_mode = 2
 
 [node name="Abandoned_House" parent="." unique_id=446834699 instance=ExtResource("1_80vhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5697775, 0, 10.503038)
@@ -154,9 +185,24 @@ visible = false
 [node name="Cortina" parent="Abandoned_House/Baño" parent_id_path=PackedInt32Array(446834699, 1430893870) index="14" unique_id=322305085]
 visible = false
 
+[node name="Casa" parent="Abandoned_House" index="25" unique_id=13659915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.85307, 3.0757077, -126.21918)
+
 [node name="Puerta" type="MeshInstance3D" parent="Abandoned_House/Casa/Puerta" parent_id_path=PackedInt32Array(446834699, 546155620) index="0" unique_id=802423823]
 transform = Transform3D(0.06489459, 9.908055e-08, -1.1982441, -1.04907336e-07, -1.2, -1.0490733e-07, -1.198244, 1.10427074e-07, -0.06489458, 0.3548622, 0.16937172, -14.730469)
 mesh = SubResource("ArrayMesh_w6r4f")
+
+[node name="Marco_V" parent="Abandoned_House/Ventanas" parent_id_path=PackedInt32Array(446834699, 1411770441) index="10" unique_id=1925014164]
+transform = Transform3D(2.0155349, 0, 0, 0, 2.0155349, 0, 0, 0, 4.01444, -56.064102, -4.8847513, -2.5599213)
+transparency = 0.69
+
+[node name="Ventana_008" parent="Abandoned_House/Ventanas" parent_id_path=PackedInt32Array(446834699, 1411770441) index="19" unique_id=1380399909]
+transform = Transform3D(2.015534, 0, 0, 0, 2.015534, 0, 0, 0, 4.014438, -36.19689, -4.853242, -10.095139)
+transparency = 0.3
+
+[node name="Ventana_029" parent="Abandoned_House/Ventanas" parent_id_path=PackedInt32Array(446834699, 1411770441) index="30" unique_id=2095475941]
+transform = Transform3D(2.0155344, 0, 0, 0, 2.0155344, 0, 0, 0, 2.0155344, -56.03858, -5.603579, -2.4840546)
+transparency = 0.7
 
 [node name="Ban" parent="Abandoned_House" index="29" unique_id=1245512377]
 visible = false
